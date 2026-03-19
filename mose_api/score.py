@@ -11,8 +11,8 @@ import argparse
 
 from PIL import Image
 import numpy as np
-from metricsv2 import db_eval_boundary, db_eval_iou
-from track_progress_rich import track_progress_rich
+from .metricsv2 import db_eval_boundary, db_eval_iou
+from .track_progress_rich import track_progress_rich
 
 SPLIT = 'valid'
 
