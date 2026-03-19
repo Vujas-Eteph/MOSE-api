@@ -31,6 +31,10 @@ print(f"  Total memory: {MAX_MEMORY_GB} GB")
 print(f"  Max frames per chunk: {MAX_FRAMES_PER_CHUNK}")
 
 
+def ignore_hidden_files(files):
+    return [x for x in os.listdir(files) if not x.startswith('.')]
+
+
 def process_video_chunk(vid_name, meta_file, pred_dir, mask_dir, chunk_start, chunk_end, anno_id, idx):
     """Process a chunk of frames for a specific object in a video"""
     start_time = time.time()
@@ -220,14 +224,15 @@ def main():
         meta_file = json.load(fp)['videos']
 
     # video_list is the list of video folders in mask_dir
-    video_list = list(os.listdir(mask_dir))
+    video_list = list(os.listdir(mask_dir))       
 
     print('Checking Integrity...', end=' ')
     for vid in video_list:
-        if meta_file[vid]['length'] == len(os.listdir(os.path.join(mask_dir, vid))):
+        files = ignore_hidden_files(os.path.join(mask_dir, vid))
+        if meta_file[vid]['length'] == len(files):
             continue
         else:
-            raise ValueError(f'Server-side error ({vid}) - Please contact the organizers')
+            raise ValueError(f"Warning: {vid} has {len(files)} files, but meta.json expects {meta_file[vid]['length']}")
     print('Done')
 
     video_num = len(video_list)
