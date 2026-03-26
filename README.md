@@ -1,3 +1,23 @@
+# Local Documentation
+
+Install with pixi
+```fish
+pixi add lvos-api --git https://github.com/Vujas-Eteph/MOSE-api
+```
+
+Run in `pixi shell` (for MOSEv1)
+```fish
+python -m mose_api.score \
+    --meta $path_data/MOSEv1/meta_<split>.json \
+    --ann $path_data/MOSEv1/<split>/Annotations \
+    --pred $path_expe/MOSEv1/<split>/Annotations \
+    --output $path_expe/MOSEv1/<split>
+```
+
+
+---
+
+
 # MOSE: Complex Video Object Segmentation Dataset
 
 ## Quick Links
