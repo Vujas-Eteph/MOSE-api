@@ -5,13 +5,13 @@ Install with pixi
 pixi add lvos-api --git https://github.com/Vujas-Eteph/MOSE-api
 ```
 
-Run in `pixi shell` (for MOSEv1)
+Replace `<v>` with 1 or 2, and `<split>`, and run
 ```fish
 python -m mose_api.score \
-    --meta $path_data/MOSEv1/meta_<split>.json \
-    --ann $path_data/MOSEv1/<split>/Annotations \
-    --pred $path_expe/MOSEv1/<split>/Annotations \
-    --output $path_expe/MOSEv1/<split>
+    --meta $path_data/MOSEv<v>/meta_<split>.json \
+    --ann $path_data/MOSEv<v>/<split>/Annotations \
+    --pred $path_expe/MOSEv<v>/<split>/Annotations \
+    --output $path_expe/MOSEv<v>/<split>
 ```
 
 
